@@ -1,0 +1,8 @@
+In this folder are individual bounds corresponding to the first arXiv version of the manuscript "NASDUCK: New Constraints on Axion-like Dark Matter from Floquet Quantum Detector". The bound was divided into several pickle folders so that it can be uploaded to a GitHub repository, but to get the full bound, one needs to use the data of all files.
+
+In each file, one can find a span of 95% CL bounds on a span of masses, specified (in Hz), by the file name. Each file is a single dictionary, saved using the python3 pickle library, and should be loaded with pickle as well. The keys of each dictionary are (i)'mass' for the vector of masses in this file (in Hz units, to change to eV, divide by h), (ii) 'bounds', for the bounds on epsilon_P gaPP+epslion_N gaNN in units of GeV^{-1}, and (iii), 'logll' for -2*log(LL(gaPP=gaNN=0)/LL(best fit)). Note that due to the numerical method of computing the 'logll', it is entirely possible for the best fit point to be 0, and receive 'logll' which is e.g. 10^(-5). If the 'logll' is small enough, it usually implies that the null hypothesis is preferred.
+
+To compute bounds on neutrons, one must divide the bounds by 0.63, and to compute those on proton, one must divide by the highly theoretically uncertain proton-fraction.
+
+To compute bounds on Quadratic type model, one must take QuadBounds={},QuadBounds['mass']=ALPBounds['mass']/2, QuadBounds['bounds']=ALPBounds['bounds']QuadBounds['mass']/sqrt[2rhoDM],QuadBounds['logll']=ALPBounds['logll']. And to get the correct GeV^{-2} units, one should take sqrt(2rhoDM)=599.5=sqrt(20.4GeVhbar^3c^3/cm^3)/(GeVh*Hz). After doing this, one should divide by the proper particle factor (again, 0.63 for neutrons, and model-dependent for protons).
+
